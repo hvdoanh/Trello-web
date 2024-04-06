@@ -1,7 +1,10 @@
-// eslint-disable-next-line quotes
-import Button from "@mui/material/Button";
-import { pink } from '@mui/material/colors'
-import HomeIcon from '@mui/icons-material/Home'
+
+import Button from '@mui/material/Button';
+import { pink } from '@mui/material/colors';
+import HomeIcon from '@mui/icons-material/Home';
+function App() {
+
+
 
 function App() {
   return (
@@ -13,6 +16,7 @@ function App() {
 
       <br />
       <HomeIcon />
+
       <HomeIcon color="primary" />
       <HomeIcon color="secondary" />
       <HomeIcon color="success" />
