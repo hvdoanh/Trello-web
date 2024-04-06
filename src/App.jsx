@@ -1,7 +1,6 @@
-// eslint-disable-next-line quotes
+import HomeIcon from "@mui/icons-material/Home";
 import Button from "@mui/material/Button";
-import { pink } from '@mui/material/colors'
-import HomeIcon from '@mui/icons-material/Home'
+import { pink } from "@mui/material/colors";
 
 function App() {
   return (
@@ -23,4 +22,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
