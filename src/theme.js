@@ -1,10 +1,11 @@
 import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 import { teal, deepOrange, cyan, orange } from "@mui/material/colors";
+import { Height } from "@mui/icons-material";
 
 // Create a theme instance.
 const theme = extendTheme({
   trelloCustom: {
-    appBarHeight: "80px",
+    appBarHeight: "65px",
     boardBarHeight: "125px",
   },
 
@@ -24,6 +25,25 @@ const theme = extendTheme({
   },
   // ...other properties
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          "*::-webkit-scrollbar": {
+            width: "8px",
+            height: "8px",
+          },
+          "*::-webkit-scrollbar-thumb": {
+            backgroundColor: "#bdc3c7",
+            borderRadius: "8px",
+          },
+          "*::-webkit-scrollbar-thumb:hover": {
+            backgroundColor: "#00b984",
+            borderRadius: "8px",
+          },
+        },
+      },
+    },
+
     MuiButton: {
       styleOverrides: {
         root: {

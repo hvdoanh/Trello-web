@@ -15,8 +15,72 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import React from "react";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import IconButton from "@mui/material/IconButton";
 
 function AppBar() {
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  // const handleProfileMenuOpen = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      keepMounted
+      transformOrigin={{
+        vertical: "top",
+        horizontal: "right",
+      }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+      sx={{
+        top: "45px",
+      }}
+    >
+      <MenuItem>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <Badge color="error">
+            <HelpOutlineIcon />
+          </Badge>
+        </IconButton>
+        <p>Helper</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+        >
+          <Badge badgeContent={17} color="error">
+            <NotificationsNoneIcon />
+          </Badge>
+        </IconButton>
+        <p>Notifications</p>
+      </MenuItem>
+      <MenuItem sx={{ justifyContent: "center" }}>
+        <ModeSelect />
+      </MenuItem>
+    </Menu>
+  );
+
   return (
     <Box
       px={2}
@@ -27,6 +91,8 @@ function AppBar() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        gap: 2,
+        overflowX: "auto",
       }}
     >
       <Box
@@ -61,11 +127,13 @@ function AppBar() {
             Trello
           </Typography>
         </Box>
-        <Workspaces />
-        <Recent />
-        <Starred />
-        <Template />
-        <Button variant="outlined">Create</Button>
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
+          <Workspaces />
+          <Recent />
+          <Starred />
+          <Template />
+          <Button variant="outlined">Create</Button>
+        </Box>
       </Box>
 
       <Box
@@ -80,20 +148,39 @@ function AppBar() {
           label="Search..."
           type="search"
           size="small"
+          sx={{ minWidth: "120px" }}
         />
-        <ModeSelect />
 
-        <Tooltip title="Notifications">
-          <Badge color="secondary" variant="dot" sx={{ cursor: "pointer" }}>
-            <NotificationsNoneIcon sx={{ color: "primary.main" }} />
-          </Badge>
-        </Tooltip>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            gap: 1,
+            alignItems: "center",
+          }}
+        >
+          <ModeSelect />
+          <Tooltip title="Notifications">
+            <Badge color="secondary" variant="dot" sx={{ cursor: "pointer" }}>
+              <NotificationsNoneIcon sx={{ color: "primary.main" }} />
+            </Badge>
+          </Tooltip>
 
-        <Tooltip title="Help">
-          <HelpOutlineIcon sx={{ cursor: "pointer", color: "primary.main" }} />
-        </Tooltip>
+          <Tooltip title="Help">
+            <HelpOutlineIcon
+              sx={{ cursor: "pointer", color: "primary.main" }}
+            />
+          </Tooltip>
+        </Box>
+        <Box
+          sx={{ display: { xs: "flex", md: "none" } }}
+          open={isMobileMenuOpen}
+          onClick={handleMobileMenuOpen}
+        >
+          <MoreVertIcon />
+        </Box>
         <Profiles />
       </Box>
+      {renderMobileMenu}
     </Box>
   );
 }
