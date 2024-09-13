@@ -16,6 +16,7 @@ import Hoang from "../../../assets/cong.jpg";
 import Hung1 from "../../../assets/hung2.jpg";
 import Button from "@mui/material/Button";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { capitalizeFirstLetter } from "~/utils/formatters";
 
 const MENU_STYLES = {
   color: "white",
@@ -31,7 +32,7 @@ const MENU_STYLES = {
   },
 };
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box
       sx={{
@@ -42,9 +43,11 @@ function BoardBar() {
         justifyContent: "space-between",
         gap: 2,
         overflow: "auto",
-        borderBottom: "1px solid white",
         bgcolor: (theme) =>
           theme.palette.mode === "dark" ? "#34495e" : "##1976d2",
+        "&::-webkit-scrollbar-track": {
+          m: 2,
+        },
       }}
     >
       <Box
@@ -58,13 +61,13 @@ function BoardBar() {
         <Chip
           sx={MENU_STYLES}
           icon={<DashboardIcon />}
-          label="MERN Stack Board"
+          label={board?.title}
           clickable
         />
         <Chip
           sx={MENU_STYLES}
           icon={<VpnLockIcon />}
-          label="Public/Private Workspace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
         />
         <Chip
@@ -114,6 +117,11 @@ function BoardBar() {
               height: 34,
               fontSize: 16,
               border: "none",
+              color: "white",
+              cursor: "pointer",
+              "&:first-of-type": {
+                bgcolor: "#a4b0de",
+              },
             },
           }}
         >

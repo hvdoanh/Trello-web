@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import ModeSelect from "~/componets/ModeSelect";
+import ModeSelect from "~/componets/ModeSelect/ModeSelect";
 import AppsIcon from "@mui/icons-material/Apps";
 import { ReactComponent as TrelloIcon } from "~/assets/trello.svg";
 import SvgIcon from "@mui/material/SvgIcon";
@@ -101,6 +101,9 @@ function AppBar() {
         overflowX: "auto",
         bgcolor: (theme) =>
           theme.palette.mode === "dark" ? "#2c3e50" : "#1565c0",
+        "&::-webkit-scrollbar-track": {
+          m: 2,
+        },
       }}
     >
       <Box
